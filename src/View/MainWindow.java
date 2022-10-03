@@ -7,6 +7,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -24,6 +26,7 @@ public class MainWindow extends JFrame {
     private String linkInput;
     private String nameInput;
     private String topics;
+    private String s;
 
     MainController control = new MainController();
 
@@ -74,25 +77,15 @@ public class MainWindow extends JFrame {
                     //System.out.println(nameInput);
 
 
-                    PreviewWindow preview = new PreviewWindow("Audio to text converter");
-                    dispose();
+                    PreviewWindow preview = new PreviewWindow("Audio to text converter",s);
+
 
                 }
             }
         });
 
-        //prilikom klika na JListu otvaramo novi view sa odabirom tema i transkripata
-        //gasimo stari view
-        mainListTopics.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
 
 
-                PreviewWindow preview = new PreviewWindow("Audio to text converter");
-                dispose();
-
-            }
-        });
 
 
         //dohvacamo korisnikov odabir teme u koju zeli spremiti svoj transkript
@@ -104,7 +97,22 @@ public class MainWindow extends JFrame {
 
             }
         });
+
+        //prilikom klika na JListu otvaramo novi view sa odabirom tema i transkripata
+        mainListTopics.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                s=(String)mainListTopics.getSelectedValue();
+                PreviewWindow preview = new PreviewWindow("Audio to text converter",s);
+
+
+                //dispose();
+            }
+        });
     }
+
+
 }
 
 

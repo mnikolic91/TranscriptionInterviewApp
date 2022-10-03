@@ -19,8 +19,9 @@ public class PreviewWindow extends JFrame {
     MainController control = new MainController();
 
 
-    public PreviewWindow(String title) {
+    public PreviewWindow(String title,String topic) {
         super(title);
+
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainScndPanel);
@@ -30,6 +31,9 @@ public class PreviewWindow extends JFrame {
         comboBoxTopic.addItem("java");
         comboBoxTopic.addItem("bash");
         comboBoxTopic.addItem("c#");
+        topics=topic;
+        comboBoxTopic.setSelectedItem(topics);
+        control.listFilesInFolder(topics, mainListTopics);
 
 
         this.pack();
