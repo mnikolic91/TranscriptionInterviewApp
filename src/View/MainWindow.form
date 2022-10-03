@@ -107,7 +107,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <dropMode value="INSERT"/>
+          <dropMode value="USE_SELECTION"/>
           <model>
             <item value="python"/>
             <item value="java"/>
